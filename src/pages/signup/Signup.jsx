@@ -1,26 +1,39 @@
 import React, { useState } from "react";
-import styles from "./Login.module.css";
+import { useSignup } from "../../hooks/useSignup";
+import styles from "./Signup.module.css";
 
-function Login() {
+function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const { error, isPending, signup } = useSignup();
 
-  const handleData = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleData = (event) => {
     if (event.target.type === "email") {
       setEmail(event.target.value);
     } else if (event.target.type === "password") {
       setPassword(event.target.value);
+    } else if (event.target.type === "text") {
+      setDisplayName(event.target.value);
     }
   };
-  const handleSubmit = (event:React.FormEvent<HTMLFormElement> ) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(email, password);
+    signup(email, password, displayName);
   };
 
   return (
-    <form className={styles.login_form} onSubmit={handleSubmit}>
+    <form className={styles.signup_form} onSubmit={handleSubmit}>
       <fieldset>
-        <legend> Login </legend>
+        <legend> Signup </legend>
+        <label htmlFor='myNickname'> Nickname : </label>
+        <input
+          type='text'
+          id='myNickname'
+          value={displayName}
+          onChange={handleData}
+          required
+        />
         <label htmlFor='myEmail'> Email : </label>
         <input
           type='email'
@@ -38,11 +51,11 @@ function Login() {
           required
         />
         <button type='submit' className={styles.button}>
-          Login
+          Signup
         </button>
       </fieldset>
     </form>
   );
 }
 
-export default Login;
+export default Signup;

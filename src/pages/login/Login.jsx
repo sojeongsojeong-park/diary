@@ -1,37 +1,28 @@
 import React, { useState } from "react";
-import styles from "./Signup.module.css";
+import { useLogin } from "../../hooks/useLogin";
+import styles from "./Login.module.css";
 
-function Signup() {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
+  const { error, isPending, login } = useLogin();
 
-  const handleData = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleData = (event) => {
     if (event.target.type === "email") {
       setEmail(event.target.value);
     } else if (event.target.type === "password") {
       setPassword(event.target.value);
-    } else if (event.target.type === "text") {
-      setDisplayName(event.target.value);
     }
   };
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(email, password);
+    login(email, password);
   };
 
   return (
-    <form className={styles.signup_form} onSubmit={handleSubmit}>
+    <form className={styles.login_form} onSubmit={handleSubmit}>
       <fieldset>
-        <legend> Signup </legend>
-        <label htmlFor='myNickname'> Nickname : </label>
-        <input
-          type='text'
-          id='myNickname'
-          value={displayName}
-          onChange={handleData}
-          required
-        />
+        <legend> Login </legend>
         <label htmlFor='myEmail'> Email : </label>
         <input
           type='email'
@@ -48,12 +39,16 @@ function Signup() {
           onChange={handleData}
           required
         />
-        <button type='submit' className={styles.button}>
-          Signup
-        </button>
+        {!isPending && (
+          <button type='submit' className={styles.button}>
+            Login
+          </button>
+        )}
+        {isPending && <strong>Now Processing...</strong>}
+        {error && <strong>{error}</strong>}
       </fieldset>
     </form>
   );
 }
 
-export default Signup;
+export default Login;
