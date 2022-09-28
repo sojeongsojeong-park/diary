@@ -1,6 +1,7 @@
 .nav {
-  background-color: royalblue;
-  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 50px;
 }
 
 .nav .list_nav {
@@ -11,11 +12,11 @@
 }
 
 .nav .title {
-  color: #fff;
+  color: #ff9494;
 }
 
 .nav a {
-  color: #fff;
+  color: black;
   text-decoration: none;
 }
 
@@ -23,7 +24,7 @@
   margin-left: 20px;
   padding: 6px 12px;
   border-radius: 10px;
-  background-color: teal;
+  background-color: #ff9494;
   border: none;
   color: #fff;
   cursor: pointer;
