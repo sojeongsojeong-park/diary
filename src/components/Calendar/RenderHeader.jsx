@@ -2,15 +2,17 @@ import React from "react";
 import { format } from "date-fns";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
+import classes from "./RenderHeader.module.css";
+
 const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
   return (
-    <div className='headerContainer'>
-      <BsArrowLeft onClick={prevMonth} />
-      <div className='monthContainer'>
-        <span className='month'>{format(currentMonth, "M")}월</span>
-        <span className='year'>{format(currentMonth, "yyyy")}년</span>
+    <div className={classes.headerContainer}>
+      <BsArrowLeft className={classes.left} onClick={prevMonth} />
+      <div className={classes.monthContainer}>
+        <span className={classes.month}>{format(currentMonth, "MMM")}</span>
+        <span className={classes.year}>{format(currentMonth, "yyyy")}</span>
       </div>
-      <BsArrowRight onClick={nextMonth} />
+      <BsArrowRight className={classes.right} onClick={nextMonth} />
     </div>
   );
 };

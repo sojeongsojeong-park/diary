@@ -1,0 +1,26 @@
+.headerContainer {
+  width: 1000px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 30px;
+  margin-left: 40px;
+}
+.month,
+.year {
+  display: block;
+  width: 700px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.left,
+.right {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  color: #bbb;
+}
+.month {
+  font-weight: lighter;
+  font-size: 40px;
+}

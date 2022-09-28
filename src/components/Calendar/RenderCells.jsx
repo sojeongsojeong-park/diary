@@ -1,3 +1,4 @@
+import React from "react";
 import {
   addDays,
   endOfMonth,
@@ -9,7 +10,7 @@ import {
   startOfMonth,
   startOfWeek,
 } from "date-fns";
-import React from "react";
+import classes from "./RenderCells.module.css";
 
 const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
   const monthStart = startOfMonth(currentMonth);
@@ -27,44 +28,39 @@ const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
       formattedDate = format(day, "d");
       const cloneDay = day;
       days.push(
-        <div
+        <li
           className={`col cell ${
             !isSameMonth(day, monthStart)
-              ? "disabled"
+              ? classes.disabled
               : isSameDay(day, selectedDate)
-              ? "selected"
+              ? classes.selected
               : format(currentMonth, "M") !== format(day, "M")
-              ? "not-valid"
-              : "valid"
+              ? classes.notValid
+              : classes.valid
           }`}
           key={day}
           onClick={() => {
-            onDateClick(parse(cloneDay));
+            onDateClick(cloneDay);
           }}
         >
           <span
             className={
               format(currentMonth, "M") !== format(day, "M")
-                ? "text not-valid"
+                ? `${classes.noValidText}`
                 : ""
             }
           >
-            {" "}
             {formattedDate}
           </span>
-        </div>
+        </li>
       );
       day = addDays(day, 1);
     }
-    rows.push(
-      <div className='row' key={day}>
-        {days}
-      </div>
-    );
+    rows.push(<ul key={day}>{days}</ul>);
     days = [];
   }
 
-  return <div className='body'>{rows}</div>;
+  return <div className={classes.cellsContainer}>{rows}</div>;
 };
 
 export default RenderCells;

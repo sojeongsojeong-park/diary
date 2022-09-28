@@ -1,0 +1,42 @@
+.cellsContainer {
+  width: fit-content;
+  margin: auto;
+}
+.cellsContainer ul {
+  display: flex;
+  /* justify-content: space-around; */
+  border-bottom: 0.5px solid #ddd;
+  padding-left: 0;
+
+  margin-left: 40px;
+}
+.cellsContainer ul:first-of-type {
+  padding-top: 17px;
+  border-top: 0.5px solid #ddd;
+}
+.cellsContainer li {
+  display: block;
+  width: 120px;
+  height: 120px;
+  padding: 10px;
+  margin-top: -17px;
+  border-left: 0.5px solid #ddd;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.cellsContainer li:last-of-type {
+  border-right: 0.5px solid #ddd;
+}
+.cellsContainer ul .disabled {
+  color: #ddd;
+}
+.cellsContainer ul .valid {
+  color: black;
+}
+.cellsContainer ul .valid:hover,
+.cellsContainer ul .selected:hover {
+  background-color: #fff;
+}
+.cellsContainer ul .selected {
+  color: #ff9494;
+}

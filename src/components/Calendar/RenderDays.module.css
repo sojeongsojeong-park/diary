@@ -1,0 +1,18 @@
+.daysContainer ul {
+  width: fit-content;
+  display: flex;
+  padding-top: 17px;
+  margin: auto;
+  margin-bottom: -17px;
+}
+.daysContainer ul li {
+  display: block;
+  width: 120px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  border-left: 0.5px solid #ddd;
+}
+.daysContainer ul li:last-of-type {
+  border-right: 0.5px solid #ddd;
+}

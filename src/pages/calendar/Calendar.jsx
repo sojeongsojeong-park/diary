@@ -18,9 +18,10 @@ const Calendar = () => {
   };
   const onDateClick = (day) => {
     setSelectedDate(day);
+    console.log(selectedDate);
   };
   return (
-    <div className='calendar'>
+    <div className={classes.calendar}>
       <RenderHeader
         currentMonth={currentMonth}
         prevMonth={prevMonth}
