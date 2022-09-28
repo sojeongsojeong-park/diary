@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Calendar from "./components/Calendar/Calendar";
+import Calendar from "./pages/calendar/Calendar";
 import Nav from "./components/Nav/Nav";
 import { useAuthContext } from "./hooks/useAuthContext";
 import Home from "./pages/home/Home";
