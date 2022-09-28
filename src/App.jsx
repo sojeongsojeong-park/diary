@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Nav from "./components/Nav";
+import Calendar from "./components/Calendar/Calendar";
+import Nav from "./components/Nav/Nav";
 import { useAuthContext } from "./hooks/useAuthContext";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
@@ -36,6 +37,7 @@ function App() {
                 !user ? <Signup /> : <Navigate replace={true} to='/'></Navigate>
               }
             ></Route>
+            <Route path='/calendar' element={<Calendar />}></Route>
           </Routes>
         </BrowserRouter>
       ) : (
