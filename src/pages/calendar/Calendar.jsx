@@ -7,6 +7,7 @@ import { HiOutlinePlus } from "react-icons/hi";
 
 import classes from "./Calendar.module.css";
 import { DiaryContext } from "../../context/DiaryContext";
+import Modal from "../../components/Modal/Modal";
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -22,9 +23,6 @@ const Calendar = () => {
   const onDateClick = (day) => {
     setSelectedDate(day);
     console.log(selectedDate);
-  };
-  const openDiaryHandler = (date) => {
-    openHandler.updateOpenHandler(true, date);
   };
   return (
     <div className={classes.calendar}>
@@ -42,11 +40,15 @@ const Calendar = () => {
       <div
         className={classes.addDiary}
         onClick={() => {
-          openDiaryHandler(format(selectedDate, "yyyyMMMdd"));
+          openHandler.updateOpenHandler(
+            true,
+            format(selectedDate, "yyyyMMMdd")
+          );
         }}
       >
         <HiOutlinePlus className={classes.plus} />
       </div>
+      {openHandler.openState.isOpen && <Modal />}
     </div>
   );
 };

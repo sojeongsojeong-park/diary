@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { DiaryContext } from "../../context/DiaryContext";
 import { useFirestore } from "../../hooks/useFirestore";
 
-function DiaryForm({ uid }) {
+import classes from "./DiaryForm.module.css";
+
+const DiaryForm = ({ uid }) => {
+  const openHandler = useContext(DiaryContext);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [date, setDate] = useState(openHandler.openState.date);
   const { addDocument, response } = useFirestore("diary");
 
   useEffect(() => {
@@ -15,6 +20,8 @@ function DiaryForm({ uid }) {
   const handleData = (e) => {
     if (e.target.id === "title") {
       setTitle(e.target.value);
+    } else if (e.target.id === "date") {
+      setDate(e.target.value);
     } else if (e.target.id === "content") {
       setContent(e.target.value);
     }
@@ -26,7 +33,7 @@ function DiaryForm({ uid }) {
   };
 
   return (
-    <>
+    <div className={classes.formContainer}>
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>record your day✨</legend>
@@ -38,6 +45,14 @@ function DiaryForm({ uid }) {
             onChange={handleData}
             value={title}
           />
+          <label htmlFor='date'>Date is : </label>
+          <input
+            id='date'
+            type='text'
+            required
+            onChange={handleData}
+            value={date}
+          />
           <label htmlFor='content'>How was your day? : </label>
           <textarea
             id='content'
@@ -48,10 +63,18 @@ function DiaryForm({ uid }) {
           ></textarea>
 
           <button type='submit'>✏️record</button>
+          <button
+            type='button'
+            onClick={() => {
+              openHandler.updateOpenHandler(false, "");
+            }}
+          >
+            ❌close
+          </button>
         </fieldset>
       </form>
-    </>
+    </div>
   );
-}
+};
 
 export default DiaryForm;
