@@ -1,5 +1,8 @@
 .formContainer {
-  width: 800px;
-  height: 500px;
+  width: 900px;
+  height: 800px;
   background-color: antiquewhite;
+  margin: auto;
+  border-radius: 15px;
+  box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.25);
 }
