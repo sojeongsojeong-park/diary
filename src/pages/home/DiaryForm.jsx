@@ -31,7 +31,7 @@ const DiaryForm = ({ uid }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addDocument({ uid, title, content });
+    addDocument({ uid, title, date, content, photo });
   };
 
   const fildInputClickHandler = () => {
@@ -53,60 +53,74 @@ const DiaryForm = ({ uid }) => {
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>record your day✨</legend>
-          <label htmlFor='title'>Title of your day : </label>
-          <input
-            id='title'
-            type='text'
-            required
-            onChange={handleData}
-            value={title}
-          />
-          <label htmlFor='date'>Date is : </label>
-          <input
-            id='date'
-            type='text'
-            required
-            onChange={handleData}
-            value={date}
-          />
-          <label htmlFor='file'>show your day : </label>
-          <input
-            id='date'
-            type='file'
-            ref={fileInputRef}
-            onChange={(e) => {
-              fileHandler(e.target.files[0]);
-            }}
-            style={{ display: "none" }}
-          />
-          <div
-            onClick={fildInputClickHandler}
-            style={{
-              width: "100px",
-              height: "100px",
-            }}
-          >
-            🎬
-            {photo !== "" && <img src={photo} alt='upload image' />}
+          <div className={classes.inputContainer}>
+            <label htmlFor='title'>Title of your day : </label>
+            <input
+              id='title'
+              type='text'
+              required
+              onChange={handleData}
+              value={title}
+            />
           </div>
-          <label htmlFor='content'>How was your day? : </label>
-          <textarea
-            id='content'
-            type='text'
-            value={content}
-            required
-            onChange={handleData}
-          ></textarea>
+          <div className={classes.inputContainer}>
+            <label htmlFor='date'>Date is : </label>
+            <input
+              id='date'
+              type='text'
+              required
+              onChange={handleData}
+              value={date}
+            />
+          </div>
+          <div className={classes.photoContainer}>
+            <label htmlFor='file'>show your day </label>
+            <input
+              id='file'
+              type='file'
+              ref={fileInputRef}
+              onChange={(e) => {
+                fileHandler(e.target.files[0]);
+              }}
+              style={{ display: "none" }}
+            />
+            <div
+              onClick={fildInputClickHandler}
+              style={{
+                width: "100px",
+                height: "100px",
+              }}
+            >
+              {photo === "" ? (
+                <div className={classes.emptyPhoto} />
+              ) : (
+                <img src={photo} alt='uploaded' />
+              )}
+            </div>
+          </div>
+          <div className={classes.textareaContainer}>
+            <label htmlFor='content'>How was your day? </label>
+            <textarea
+              id='content'
+              type='text'
+              value={content}
+              placeholder='✏️ type your day here'
+              required
+              onChange={handleData}
+            ></textarea>
+          </div>
 
-          <button type='submit'>✏️record</button>
-          <button
-            type='button'
-            onClick={() => {
-              openHandler.updateOpenHandler(false, "");
-            }}
-          >
-            ❌close
-          </button>
+          <div className={classes.buttonContainer}>
+            <button type='submit'>✏️record</button>
+            <button
+              type='button'
+              onClick={() => {
+                openHandler.updateOpenHandler(false, "");
+              }}
+            >
+              ❌close
+            </button>
+          </div>
         </fieldset>
       </form>
     </div>
