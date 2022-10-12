@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
 import { DiaryContext } from "../../context/DiaryContext";
 import { useFirestore } from "../../hooks/useFirestore";
-
 import classes from "./DiaryForm.module.css";
 
 const DiaryForm = ({ uid }) => {
@@ -31,7 +30,8 @@ const DiaryForm = ({ uid }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addDocument({ uid, title, date, content, photo });
+    addDocument({ uid, title, date, photo, content });
+    openHandler.updateOpenHandler(false, "");
   };
 
   const fildInputClickHandler = () => {
@@ -50,7 +50,7 @@ const DiaryForm = ({ uid }) => {
 
   return (
     <div className={classes.formContainer}>
-      <form onSubmit={handleSubmit}>
+      <form>
         <fieldset>
           <legend>record your day✨</legend>
           <div className={classes.inputContainer}>
@@ -79,6 +79,7 @@ const DiaryForm = ({ uid }) => {
               id='file'
               type='file'
               ref={fileInputRef}
+              required
               onChange={(e) => {
                 fileHandler(e.target.files[0]);
               }}
@@ -111,7 +112,9 @@ const DiaryForm = ({ uid }) => {
           </div>
 
           <div className={classes.buttonContainer}>
-            <button type='submit'>✏️record</button>
+            <button type='submit' onClick={handleSubmit}>
+              ✏️record
+            </button>
             <button
               type='button'
               onClick={() => {

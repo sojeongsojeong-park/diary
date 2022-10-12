@@ -7,12 +7,16 @@ import { HiOutlinePlus } from "react-icons/hi";
 
 import classes from "./Calendar.module.css";
 import { DiaryContext } from "../../context/DiaryContext";
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { useCollection } from "../../hooks/useCollection";
 import Modal from "../../components/Modal/Modal";
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const openHandler = useContext(DiaryContext);
+  const { user } = useAuthContext();
+  const { documents, error } = useCollection("diary", ["uid", "==", user.uid]);
 
   const prevMonth = () => {
     setCurrentMonth(subMonths(currentMonth, 1));
@@ -32,11 +36,14 @@ const Calendar = () => {
         nextMonth={nextMonth}
       />
       <RenderDays />
+
       <RenderCells
         currentMonth={currentMonth}
         selectedDate={selectedDate}
         onDateClick={onDateClick}
+        documents={documents !== null && documents}
       />
+
       <div
         className={classes.addDiary}
         onClick={() => {
@@ -49,6 +56,7 @@ const Calendar = () => {
         <HiOutlinePlus className={classes.plus} />
       </div>
       {openHandler.openState.isOpen && <Modal />}
+      {error && <strong>{error}</strong>}
     </div>
   );
 };

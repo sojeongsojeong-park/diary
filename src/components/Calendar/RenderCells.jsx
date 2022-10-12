@@ -6,13 +6,17 @@ import {
   format,
   isSameDay,
   isSameMonth,
-  parse,
   startOfMonth,
   startOfWeek,
 } from "date-fns";
 import classes from "./RenderCells.module.css";
 
-const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
+const RenderCells = ({
+  currentMonth,
+  selectedDate,
+  onDateClick,
+  documents,
+}) => {
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
   const startDate = startOfWeek(monthStart);
@@ -27,6 +31,13 @@ const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
     for (let i = 0; i < 7; i++) {
       formattedDate = format(day, "d");
       const cloneDay = day;
+      let test;
+      documents &&
+        documents.forEach((doc) => {
+          if (doc.date === format(day, "yyyyMMMdd")) {
+            test = doc;
+          }
+        });
       days.push(
         <li
           className={`col cell ${
@@ -41,6 +52,9 @@ const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
           key={day}
           onClick={() => {
             onDateClick(cloneDay);
+          }}
+          style={{
+            backgroundImage: `url(${test && test.photo})`,
           }}
         >
           <span

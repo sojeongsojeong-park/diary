@@ -9,7 +9,6 @@ const DiaryContextProvider = ({ children }) => {
   });
   const updateOpenState = (bool, date) => {
     setOpenState({ isOpen: bool, date: date });
-    console.log(openState);
   };
 
   const contextValue = {

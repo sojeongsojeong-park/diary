@@ -1,4 +1,10 @@
-import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { appFireStore } from "../firebase/config";
 
@@ -9,14 +15,23 @@ export const useCollection = (transaction, myQuery) => {
   useEffect(() => {
     let q;
     if (myQuery) {
-      q = query(collection(appFireStore, transaction), where(...myQuery), orderBy('createdTime', "desc"));
+      q = query(
+        collection(appFireStore, transaction),
+        where(...myQuery),
+        orderBy("createdTime", "desc")
+      );
     }
     const unsubscribe = onSnapshot(
       myQuery ? q : collection(appFireStore, transaction),
       (snapshot) => {
         let result = [];
-        snapshot.docs.forEach((doc) => {
-          result.push({ ...doc.data(), id: doc.id });
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === "added") {
+            result.push({ ...change.doc.data(), id: change.doc.id });
+          }
+          // if (change.type === "modified") {
+          //   result.push({ ...change.doc.data(), id: change.doc.id });
+          // }
         });
         setDocuments(result);
         setError(null);

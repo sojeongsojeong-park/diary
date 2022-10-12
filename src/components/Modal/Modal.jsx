@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
+import { useAuthContext } from "../../hooks/useAuthContext";
+
 import { DiaryContext } from "../../context/DiaryContext";
 import DiaryForm from "../../pages/home/DiaryForm";
 
 import classes from "./Modal.module.css";
 
 const Modal = () => {
+  const { user } = useAuthContext();
   const openHandler = useContext(DiaryContext);
   return (
     <div
@@ -15,7 +18,7 @@ const Modal = () => {
       }}
     >
       <div onClick={(e) => e.stopPropagation()}>
-        <DiaryForm />
+        <DiaryForm uid={user.uid} />
       </div>
     </div>
   );
