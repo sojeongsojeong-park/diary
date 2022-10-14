@@ -25,13 +25,8 @@ export const useCollection = (transaction, myQuery) => {
       myQuery ? q : collection(appFireStore, transaction),
       (snapshot) => {
         let result = [];
-        snapshot.docChanges().forEach((change) => {
-          if (change.type === "added") {
-            result.push({ ...change.doc.data(), id: change.doc.id });
-          }
-          // if (change.type === "modified") {
-          //   result.push({ ...change.doc.data(), id: change.doc.id });
-          // }
+        snapshot.docs.forEach((doc) => {
+          result.push({ ...doc.data(), id: doc.id });
         });
         setDocuments(result);
         setError(null);

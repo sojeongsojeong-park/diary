@@ -49,12 +49,10 @@ export const useFirestore = (transaction) => {
   //컬렉션에 문서를 추가
   const addDocument = async (doc) => {
     dispatch({ type: "isPending" });
-    console.log(doc);
     try {
       const createdTime = timestamp.fromDate(new Date());
       const docRef = await addDoc(colRef, { ...doc, createdTime });
       dispatch({ type: "addDoc", payload: docRef });
-      console.log(doc);
     } catch (error) {
       dispatch({ type: "error", payload: error.message });
     }
