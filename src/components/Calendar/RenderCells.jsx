@@ -53,9 +53,6 @@ const RenderCells = ({
           onClick={() => {
             onDateClick(cloneDay);
           }}
-          style={{
-            backgroundImage: `url(${test && test.photo})`,
-          }}
         >
           <span
             className={
@@ -66,6 +63,16 @@ const RenderCells = ({
           >
             {formattedDate}
           </span>
+          <div
+            style={{
+              width: "100px",
+              height: "75px",
+              backgroundImage: `url(${test && test.photo})`,
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center bottom",
+            }}
+          />
         </li>
       );
       day = addDays(day, 1);
