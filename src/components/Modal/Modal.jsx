@@ -5,20 +5,22 @@ import { DiaryContext } from "../../context/DiaryContext";
 import DiaryForm from "../../pages/home/DiaryForm";
 
 import classes from "./Modal.module.css";
+import Diary from "../../pages/home/Diary";
 
 const Modal = () => {
   const { user } = useAuthContext();
   const openHandler = useContext(DiaryContext);
+  console.log(openHandler);
   return (
     <div
       className={classes.diaryFormContainer}
       onClick={() => {
-        console.log("modal");
-        openHandler.updateOpenHandler(false, "");
+        openHandler.updateOpenHandler(false, "", null);
       }}
     >
       <div onClick={(e) => e.stopPropagation()}>
-        <DiaryForm uid={user.uid} />
+        {openHandler.openState.data === null && <DiaryForm uid={user.uid} />}
+        {openHandler.openState.data && <Diary />}
       </div>
     </div>
   );

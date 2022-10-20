@@ -1,0 +1,53 @@
+.diaryContainer {
+  width: 800px;
+  height: 630px;
+  background-color: antiquewhite;
+  border-radius: 15px;
+  box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  top: calc(50vh - 320px);
+  left: calc(50vw - 400px);
+}
+.diaryContainer span {
+  display: block;
+  padding: 0 100px;
+  text-align: end;
+}
+.diaryContainer h2 {
+  padding: 20px;
+  text-align: center;
+}
+.diaryContainer img {
+  display: block;
+  max-width: 500px;
+  height: 180px;
+  object-fit: cover;
+  margin: 20px auto;
+}
+.diaryContainer p {
+  display: block;
+  max-width: 500px;
+  height: 150px;
+  margin: auto;
+  overflow: scroll;
+}
+.diaryContainer p::-webkit-scrollbar {
+  display: none;
+}
+
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+.buttonContainer button {
+  padding: 10px 40px;
+  border: none;
+  border-radius: 10px;
+  background-color: #fffaf6;
+}
+.buttonContainer button:hover {
+  background-color: #ff9494;
+  color: #fffaf6;
+}

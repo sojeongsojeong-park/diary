@@ -6,9 +6,10 @@ const DiaryContextProvider = ({ children }) => {
   const [openState, setOpenState] = useState({
     isOpen: false,
     date: "",
+    data: null
   });
-  const updateOpenState = (bool, date) => {
-    setOpenState({ isOpen: bool, date: date });
+  const updateOpenState = (bool, date, data) => {
+    setOpenState({ isOpen: bool, date: date, data:data });
   };
 
   const contextValue = {

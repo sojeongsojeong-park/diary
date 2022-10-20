@@ -10,6 +10,8 @@ import {
   startOfWeek,
 } from "date-fns";
 import classes from "./RenderCells.module.css";
+import { useContext } from "react";
+import { DiaryContext } from "../../context/DiaryContext";
 
 const RenderCells = ({
   currentMonth,
@@ -21,6 +23,7 @@ const RenderCells = ({
   const monthEnd = endOfMonth(monthStart);
   const startDate = startOfWeek(monthStart);
   const endDate = endOfWeek(monthEnd);
+  const openHandler = useContext(DiaryContext);
 
   const rows = [];
   let days = [];
@@ -31,11 +34,11 @@ const RenderCells = ({
     for (let i = 0; i < 7; i++) {
       formattedDate = format(day, "d");
       const cloneDay = day;
-      let test;
+      let data;
       documents &&
         documents.forEach((doc) => {
           if (doc.date === format(day, "yyyyMMMdd")) {
-            test = doc;
+            data = doc;
           }
         });
       days.push(
@@ -52,6 +55,9 @@ const RenderCells = ({
           key={day}
           onClick={() => {
             onDateClick(cloneDay);
+            {
+              data && openHandler.updateOpenHandler(true, "", data);
+            }
           }}
         >
           <span
@@ -67,7 +73,7 @@ const RenderCells = ({
             style={{
               width: "100px",
               height: "75px",
-              backgroundImage: `url(${test && test.photo})`,
+              backgroundImage: `url(${data && data.photo})`,
               backgroundSize: "contain",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center bottom",

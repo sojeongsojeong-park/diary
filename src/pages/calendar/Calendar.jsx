@@ -49,7 +49,8 @@ const Calendar = () => {
         onClick={() => {
           openHandler.updateOpenHandler(
             true,
-            format(selectedDate, "yyyyMMMdd")
+            format(selectedDate, "yyyyMMMdd"),
+            null
           );
         }}
       >

@@ -31,7 +31,7 @@ const DiaryForm = ({ uid }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     addDocument({ uid, title, date, photo, content });
-    openHandler.updateOpenHandler(false, "");
+    openHandler.updateOpenHandler(false, "", null);
   };
 
   const fildInputClickHandler = () => {
@@ -49,7 +49,7 @@ const DiaryForm = ({ uid }) => {
   };
 
   return (
-    <div className={classes.formContainer}>
+    <section className={classes.formContainer}>
       <form>
         <fieldset>
           <legend>record your day✨</legend>
@@ -118,7 +118,7 @@ const DiaryForm = ({ uid }) => {
             <button
               type='button'
               onClick={() => {
-                openHandler.updateOpenHandler(false, "");
+                openHandler.updateOpenHandler(false, "", null);
               }}
             >
               ❌close
@@ -126,7 +126,7 @@ const DiaryForm = ({ uid }) => {
           </div>
         </fieldset>
       </form>
-    </div>
+    </section>
   );
 };
 
