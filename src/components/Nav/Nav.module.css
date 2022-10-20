@@ -10,7 +10,7 @@
   display: flex;
   justify-content: right;
   align-items: center;
-  gap: 16px;
+  gap: 50px;
 }
 
 .nav .title {

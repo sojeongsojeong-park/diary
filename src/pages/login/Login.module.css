@@ -18,8 +18,9 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
+  background-color: transparent;
   padding: 8px 6px;
-  color: #777;
+  color: #333;
   border: none;
   border-bottom: 1px solid #000;
 }
@@ -30,8 +31,8 @@
   padding: 6px 12px;
   border-radius: 10px;
   color: #fff;
-  background-color: teal;
-  border: 1px solid teal;
+  background-color: #ff9494;
+  border: 1px solid #ff9494;
   font-weight: bold;
   cursor: pointer;
 }
