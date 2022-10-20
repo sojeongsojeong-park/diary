@@ -10,12 +10,11 @@ import Diary from "../../pages/home/Diary";
 const Modal = () => {
   const { user } = useAuthContext();
   const openHandler = useContext(DiaryContext);
-  console.log(openHandler);
   return (
     <div
       className={classes.diaryFormContainer}
       onClick={() => {
-        openHandler.updateOpenHandler(false, "", null);
+        openHandler.updateOpenHandler(false, "", openHandler.openState.data);
       }}
     >
       <div onClick={(e) => e.stopPropagation()}>

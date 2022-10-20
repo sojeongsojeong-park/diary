@@ -30,8 +30,12 @@ const DiaryForm = ({ uid }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addDocument({ uid, title, date, photo, content });
-    openHandler.updateOpenHandler(false, "", null);
+    if (photo !== "") {
+      addDocument({ uid, title, date, photo, content });
+      openHandler.updateOpenHandler(false, "", null);
+    } else {
+      alert("photo is required for record");
+    }
   };
 
   const fildInputClickHandler = () => {
@@ -79,6 +83,7 @@ const DiaryForm = ({ uid }) => {
               id='file'
               type='file'
               ref={fileInputRef}
+              accept='image/*'
               required
               onChange={(e) => {
                 fileHandler(e.target.files[0]);

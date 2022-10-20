@@ -18,6 +18,7 @@ const Calendar = () => {
   const { user } = useAuthContext();
   const { documents, error } = useCollection("diary", ["uid", "==", user.uid]);
 
+  console.log(openHandler.openState);
   const prevMonth = () => {
     setCurrentMonth(subMonths(currentMonth, 1));
   };
@@ -50,7 +51,7 @@ const Calendar = () => {
           openHandler.updateOpenHandler(
             true,
             format(selectedDate, "yyyyMMMdd"),
-            null
+            openHandler.openState.data
           );
         }}
       >

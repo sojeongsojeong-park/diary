@@ -55,6 +55,7 @@ const RenderCells = ({
           key={day}
           onClick={() => {
             onDateClick(cloneDay);
+            openHandler.updateOpenHandler(false, "", null);
             {
               data && openHandler.updateOpenHandler(true, "", data);
             }
