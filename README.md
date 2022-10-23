@@ -7,6 +7,8 @@
 
 ## 개발 환경 및 배포 URL
 
+배포 URL: https://mydiary-bf3c2.web.app
+
 Front: <ul style="display:flex;">
 
   <li style="list-style:none; margin-right:5px;"><img src="https://img.shields.io/badge/React-black?style=flat&logo=React"/></li>
