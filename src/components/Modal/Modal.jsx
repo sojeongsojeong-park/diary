@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 
 import { DiaryContext } from "../../context/DiaryContext";
-import DiaryForm from "../../pages/home/DiaryForm";
+import DiaryForm from "../diary/DiaryForm";
 
 import classes from "./Modal.module.css";
-import Diary from "../../pages/home/Diary";
+import Diary from "../diary/Diary";
 
 const Modal = () => {
   const { user } = useAuthContext();

@@ -18,7 +18,6 @@ const Calendar = () => {
   const { user } = useAuthContext();
   const { documents, error } = useCollection("diary", ["uid", "==", user.uid]);
 
-  console.log(openHandler.openState);
   const prevMonth = () => {
     setCurrentMonth(subMonths(currentMonth, 1));
   };
@@ -27,7 +26,6 @@ const Calendar = () => {
   };
   const onDateClick = (day) => {
     setSelectedDate(day);
-    console.log(selectedDate);
   };
   return (
     <div className={classes.calendar}>
